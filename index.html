@@ -2,9 +2,8 @@
 <html>
   <head>
     <title>Event World</title>
-
     <style>
-      .contents {
+      .buttons {
         position: fixed;
         top: 50%;
         left: 50%;
@@ -12,45 +11,31 @@
         border: 2px solid black;
         padding: 15px;
       }
-
-      #generateButton {
-        margin-top: 5px;
-        margin-bottom: 15px;
+      .button {
+        margin: 8px;
+        height: 40px;
       }
     </style>
   </head>
   <body>
-    <div class="contents" align="center" hidden>
-      <button id="incrementButton">Tekan Aku :)</button>
-      <h3>
-        Kamu sudah menekan tombol di atas sebanyak <span id="count">0</span>
-      </h3>
+    <div class="buttons" align="center">
+      <h3 id="caption">Silakan tekan salah satu tombol di bawah...</h3>
+      <button class="button" id="tombol">Tombol Custom Event</button>
     </div>
-
     <script>
-      function welcome() {
-        alert("Sim salabim muncullah elemen-elemen HTML!");
-        const contents = document.querySelector(".contents");
-        contents.removeAttribute("hidden");
-      }
-      document.body.onload = welcome;
-      function increment() {
-        document.getElementById("count").innerText++;
+      const changeCaption = new Event("changeCaption");
 
-        if (document.getElementById("count").innerText == 7) {
-          const hiddenMessage = document.createElement("h4");
-          hiddenMessage.innerText =
-            "Selamat! Anda menemukan hadiah tersembunyi...";
-          const image = document.createElement("img");
-          image.setAttribute(
-            "src",
-            "https://raw.githubusercontent.com/dicodingacademy/a315-web-pemula-labs/shared-files/catto.jpg"
-          );
-          const contents = document.querySelector(".contents");
-          contents.appendChild(hiddenMessage).appendChild(image);
-        }
+      window.addEventListener("load", function () {
+        const tombol = document.getElementById("tombol");
+        tombol.addEventListener("changeCaption", customEventHandler);
+        tombol.addEventListener("click", function () {});
+      });
+
+      function customEventHandler(ev) {
+        console.log("Event " + ev.type + " telah dijalankan");
+        const caption = document.getElementById("caption");
+        caption.innerText = "Anda telah membangkitkan custom event";
       }
-      document.getElementById("incrementButton").onclick = increment;
     </script>
   </body>
 </html>
