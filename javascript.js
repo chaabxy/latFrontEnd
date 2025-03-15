@@ -25,5 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  
+  document.getElementById("inputNama").addEventListener("focus", function () {
+    console.log("inputNama: focus");
+    document.getElementById("notifikasiSisaKarakter").style.visibility =
+      "visible";
+  });
 });
