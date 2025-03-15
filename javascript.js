@@ -1,19 +1,10 @@
-const divs = document.getElementsByTagName("div");
+const submitAction = document.getElementById("formDataDiri");
 
-for (let el of divs) {
-  el.addEventListener("click", function () {
-    alert("ELEMEN " + el.getAttribute("id").toUpperCase());
-  });
-}
+submitAction.addEventListener("submit", function (event) {
+  const inputNama = document.getElementById("inputNama").value;
+  const inputDomisili = document.getElementById("inputDomisili").value;
+  const hiddenMessage = `Halo, ${inputNama}. Bagaimana cuacanya di ${inputDomisili}?`;
 
-
-const div = document.getElementsByTagName("div");
-for (let el of div) {
-  el.addEventListener(
-    "click",
-    function () {
-      alert("ELEMEN " + el.getAttribute("id").toUpperCase());
-    },
-    true
-  );
-}
+  document.getElementById("messageAfterSubmit").innerText = hiddenMessage;
+  event.preventDefault();
+});
